@@ -1,0 +1,26 @@
+size(200, 200);
+background(255);
+boolean left = true;
+int i = 0;
+while (i < 4) {
+  int j = 0;
+  while (j < 4) {
+    int x = 25+j*40;
+    int y = 25+i*40;
+    if (left) {
+      line(x, y, x, y+20);        
+      line(x, y+20, x+20, y+20);
+    } else {
+      line(x, y, x+20, y);
+      line(x+20, y, x+20, y+20);
+    }
+    println(y);
+    left = ! left;
+    j = j + 1;
+  }
+  i = i + 1;
+}
+
+//why doens't 25 print for the x and y value?
+//I kind of cheated because all I had to do was run the code and
+//put in print ln to get values
