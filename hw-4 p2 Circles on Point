@@ -1,0 +1,65 @@
+final int GRID_SIZE = 10; 
+//final means we can change it but only here
+final float GRID_PADDING = 50;
+
+//The set up loop only runs once! And its the size and br and stuff
+void setup() {
+  size(500, 500);
+  mouseX = mouseY = 250; //position of the mouse center =250
+}
+
+//float-means fractions requires a decimal point
+//float-part of the syntax of arrays, but not only arrays
+//float-the dog runs fast is a string-you could have an array of strings
+//float-is a data type doesn't have to be an array
+//floats contain all integers
+//rect takes floats-in reference-scroll to bottom it tells you-->
+//you can put in upto 8 arguments a through bl-read and keep
+//set of all floats-- means every floats that could possibly exist
+//look up data types in math and processing separately
+//PI is special type of number and note a float
+
+//float value will be in gridToCoordinates, but wait until later
+//when I give it you. 
+float gridToCoordinates(int input) {
+  return GRID_PADDING+input*(500 - 2*GRID_PADDING)/(GRID_SIZE-1);
+}
+//gridtocoordinates=50+input*(400/9)
+//return means calculate
+//PEDMAS parenthesis, 
+//first (500 - 2*GRID_PADDING)=50*2=100
+//second (GRID_SIZE-1)=(9)
+//GRID_PADDING+input=50+input*(400)/9
+
+
+//void draw is the animation function and drawing function
+//it runs things like loops and ___ 
+void draw() {
+  background(0);//keep drawing background black
+
+//sqrt-calculates the sqaure root of a number
+//pow-facilitates exponential expressions  pow(n,e) n to the power of e
+  noStroke(); //draw no stroke
+  fill(255); //white
+  //for loop: (start;stop;step) {
+  for (int i = 0; i < GRID_SIZE; ++i) { //i=i+1 =++i| it will run 10 times because of grid size
+    for (int j = 0; j < GRID_SIZE; ++j) { //nested for called 10 times will run 10 times
+      float distance = sqrt(pow(mouseX-gridToCoordinates(i), 2) + pow(mouseY-gridToCoordinates(j), 2));
+      float ellipseSize = min(66, 1000.0/distance); //if 100 is smaller then 1000/distance choose 100 & distance means to the next ellipse is distance
+      ellipse(gridToCoordinates(i), gridToCoordinates(j), ellipseSize, ellipseSize);
+    }
+  }
+}
+
+//DE-BUG LOG
+//1.I hacked through what everything meant and defined it inline with code.
+//2. I tried 50 in line 48 and it almost worked, but it was off then I tweaked greater numbers 
+//when hovering over a single cirlce so I kept guessing and checkign until I remembered...
+//3. 66 came from the pythagrian theorem for the 2.3rds of the distance of 100 so tried that and it worked
+
+
+
+//Orginal code in case you screw up: 
+//float distance = sqrt(pow(mouseX-gridToCoordinates(i), 2) + pow(mouseY-gridToCoordinates(j), 2));
+//      float ellipseSize = min(100, 1000.0/distance);
+//      ellipse(gridToCoordinates(i), gridToCoordinates(j), ellipseSize, ellipseSize);
